@@ -52,23 +52,13 @@ One of the sub-array will be a sorted array, it takes O(1) to find the minimal e
 """
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        if self.isSorted(nums):
-            return nums[0]
-        middle = len(nums) // 2
-        return min(self.findMin(nums[:middle]), self.findMin(nums[middle:]))
-    
-    def isSorted(self, nums):
-        return nums[0] <= nums[-1]
-
-class Solution:
-    def findMin(self, nums: List[int]) -> int:
         return self.minHelper(nums, l = 0, r = len(nums)-1)
     
     def minHelper(self, nums, l, r):
-        if l==r:
-            return nums[l]
+        if l + 1 >= r:
+            return min(nums[l], nums[r])
         if nums[l] < nums[r]:
             return nums[l]
         middle = l + (r-l)//2
-        return min(self.minHelper(nums, l, middle), self.minHelper(nums, middle+1, r))
+        return min(self.minHelper(nums, l, middle-1), self.minHelper(nums, middle, r))
         
