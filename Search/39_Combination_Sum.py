@@ -33,6 +33,11 @@ Each element of candidate is unique.
 """
 
 # Approach: DFS - combination
+## sort array first
+## dfs 
+## prune tree:
+# since we have sorted array, if the current one is greater than target, then the rest of the elements definitely greater than target.
+## The same repeated number may be chosen from candidates unlimited number of times.
 """
     Time Complexity: O(2^n) # n: number of elements in candidates list
     Space Complexity: O(k*n) # k: number of elements in the final results list
