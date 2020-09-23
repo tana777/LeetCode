@@ -57,7 +57,7 @@ class Solution:
     
     def toFindCombinationstoTarget(self, results, candidates, combinations, target, startidx):
         if target == 0:
-            results.append(combinations)
+            results.append(combinations[:])
             return
         
         for i in range(startidx,len(candidates)):
@@ -68,6 +68,6 @@ class Solution:
             if candidates[i] > target:
                 break
             combinations.append(candidates[i])
-            self.toFindCombinationstoTarget(results, candidates, combinations[:], target-candidates[i],i+1) # Each number in candidates may only be used once in the combination.
+            self.toFindCombinationstoTarget(results, candidates, combinations, target-candidates[i],i+1) # Each number in candidates may only be used once in the combination.
             combinations.pop()
         

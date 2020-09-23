@@ -59,14 +59,14 @@ class Solution:
     
     def toFindCombinationtoTarget(self, results, candidates, combinations, target, startidx):
         if target == 0:
-            results.append(combinations)
+            results.append(combinations[:])
             return
         
         for i in range(startidx, len(candidates)):
             if candidates[i] > target:
                 break
             combinations.append(candidates[i])
-            self.toFindCombinationtoTarget(results, candidates, combinations[:], target-candidates[i], i) # element can be repeatedly used
+            self.toFindCombinationtoTarget(results, candidates, combinations, target-candidates[i], i) # element can be repeatedly used
             combinations.pop()
             
         
