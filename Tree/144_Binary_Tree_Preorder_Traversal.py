@@ -46,17 +46,17 @@ class Solution:
     Time Complexity: O(n)
     Space Complexity: O(n)
 """
-
 class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
-        stack = []
         res = []
-        node = root
-        while node or len(stack) > 0:
-            while node:
-                res.append(node.val)
-                stack.append(node)
-                node = node.left
+        if not root:
+            return res
+        stack = [root]
+        while stack:
             node = stack.pop()
-            node = node.right
+            res.append(node.val)
+            if node.right:
+                stack.append(node.right)
+            if node.left:
+                stack.append(node.left)
         return res
