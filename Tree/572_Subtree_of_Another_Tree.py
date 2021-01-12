@@ -65,4 +65,35 @@ class Solution:
             return False
         return self.isSametree(p.left, q.left) and self.isSametree(p.right, q.right)
         
+
+
+# BFS + check isSametree
+class Solution:
+    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        res = False
+        queue = [s]
+        while queue:
+            s = len(queue)
+            for i in range(s):
+                node = queue.pop(0)
+                res = self.isSameTree(node, t)
+                if res:
+                    return res
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return res
+                
+                
+    
+    def isSameTree(self, p, q):
+        if not p and not q:
+            return True
+        if not p or not q:
+            return False
+        if p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+         
         
