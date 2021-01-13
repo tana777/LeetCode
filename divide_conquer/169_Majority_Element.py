@@ -61,6 +61,7 @@ mysolution.majorityElement(nums)
     can be T(n) = 2T(n/2) + 2n. By the master theorem, the recurrence satisfies case 2, so the complexity
     can be analyzed as Θ(nlogn).
 
+    
     Space complexity: O(lgn)
     Recursion stack call would cost memory. The resulting recursion tree is balanced, and therefore
     all paths from the root to a leaf node are of length O(lgn). Because the recursion tree is 
