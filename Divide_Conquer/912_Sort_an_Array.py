@@ -20,27 +20,26 @@ Space complexity: O(logn) ~ O(n)
 
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        self.quickSort(nums, 0, len(nums)-1)
+        return self.quickSort(nums, 0, len(nums)-1)
+        
+    def quickSort(self, nums, low, high):
+        if low < high:
+            p = self.partition(nums, low, high)
+            self.quickSort(nums, low, p-1)
+            self.quickSort(nums, p+1, high)
         return nums
     
-    def quickSort(self, nums, start, end):
-        if start >= end:
-            return
-        pivot = nums[start]
+    
+    def partition(self, nums, low, high):
+        pivot = nums[low]
+        border = low
         
-        l, r = start, end
-        while r >= l:
-            while r >= l and nums[l] < pivot:
-                l += 1
-            while r >= l and nums[r] > pivot:
-                r -= 1
-            if r >= l:
-                nums[r], nums[l] = nums[l], nums[r]
-                l += 1
-                r -= 1
-                
-        self.quickSort(nums, start, r)
-        self.quickSort(nums, l, end)
+        for i in range(low, high+1):
+            if nums[i] < pivot:
+                border += 1
+                nums[i], nums[border] = nums[border], nums[i]   
+        nums[low], nums[border] = nums[border], nums[low]
+        return border 
 
 
 class Solution:
@@ -85,7 +84,7 @@ class Solution:
             m = len(nums) // 2
             l = self.mergeSort(nums[:m])
             r = self.mergeSort(nums[m:])
-            return merge(l,r)
+            return self.merge(l,r)
         return nums
     
     def merge(self, list1, list2):
