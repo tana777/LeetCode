@@ -78,38 +78,35 @@ Space complexity: O(logn + n)
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
         return self.mergeSort(nums)
-
-    def mergeSort(self,nums):
+        
+    def mergeSort(self, nums):
         if len(nums) > 1:
-            m = len(nums) // 2
-            l = self.mergeSort(nums[:m])
-            r = self.mergeSort(nums[m:])
-            return self.merge(l,r)
+            mid = len(nums)//2
+            left = self.mergeSort(nums[:mid])
+            right = self.mergeSort(nums[mid:])
+            return self.merge(left, right)
+            
         return nums
     
-    def merge(self, list1, list2):
-        if not list1 and not list2:
-            return list1
-        if not list1 or not list2:
-            return list1 + list2
+    def merge(self, l1, l2):
+        if not l1 and not l2:
+            return l1
+        if not l1 or not l2:
+            return l1 + l2 
         res = []
         i = j = 0
-        while len(res) < len(list1) + len(list2):
-            if list1[i] <= list2[j]:
-                res.append(list1[i])
-                if i < len(list1)-1:
-                    i += 1  
-                else:
-                    res.extend(list2[j:])
-                    break
+        while i < len(l1) and j < len(l2):
+            if l1[i] < l2[j]:
+                res.append(l1[i])
+                i += 1
             else:
-                res.append(list2[j])
-                if j < len(list2)-1:
-                    j += 1
-                else:
-                    res.extend(list1[i:])
-                    break
-        return res
+                res.append(l2[j])
+                j += 1
+        if i >= len(l1):
+            res.extend(l2[j:])
+        if j >= len(l2):
+            res.extend(l1[i:])
+        return res 
         
 # Improvement
 class Solution:
