@@ -59,8 +59,25 @@ class Solution:
         if res[0] == k:
             res[1] = root.val
         self.inorder(root.right, res, k)
-             
 
+
+             
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        self.kth = 0
+        self.element = None
+        self.inorderTraversal(root, k)
+        return self.element
+        
+    def inorderTraversal(self, root, k):
+        if not root:
+            return 
+        self.inorderTraversal(root.left, k)
+        self.kth += 1
+        if self.kth == k:
+            self.element = root.val
+        self.inorderTraversal(root.right, k)
+        
 ## Approach: Stack + Iteration
 
 class Solution:

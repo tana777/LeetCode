@@ -52,3 +52,16 @@ class Solution:
             return self.searchHelp(root.right, val)
 
         
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        self.res = None
+        self.searchHelper(root, val)
+        return self.res
+    
+    def searchHelper(self, root, val):
+        if not root:
+            return
+        self.searchHelper(root.left, val)
+        if root.val == val:
+            self.res = root
+        self.searchHelper(root.right, val)

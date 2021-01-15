@@ -27,7 +27,7 @@ class Solution:
         
     def minHelp(self, nums, l, r):
         if l + 1 >= r:
-            return min(nums[l], num[r])
+            return min(nums[l], nums[r])
         if nums[r] > nums[l]:
             return nums[l]
         mid = l + (r-l)//2

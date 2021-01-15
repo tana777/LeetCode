@@ -59,3 +59,20 @@ class Solution:
             sentinal = node
 
         return sentinal
+
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        val1 = ''
+        val2 = ''
+        while l1:
+            val1 += str(l1.val)
+            l1 = l1.next
+        while l2:
+            val2 += str(l2.val)
+            l2 = l2.next
+        sumV = str(int(val1) + int(val2))
+        sentinal = node = ListNode(0, None)
+        for v in sumV:
+            node.next = ListNode(v, None)
+            node = node.next
+        return sentinal.next
