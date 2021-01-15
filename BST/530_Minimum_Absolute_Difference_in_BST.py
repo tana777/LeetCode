@@ -75,6 +75,27 @@ class Solution:
         self.prev = root.val
         self.diffHelp(root.right)
 
+class Solution:
+    def __init__(self):
+        self.prev = None
+        self.diff = float('inf')
+        
+    def getMinimumDifference(self, root: TreeNode) -> int:
+        self.inorderTraversal(root)
+        return self.diff
+
+        
+    def inorderTraversal(self, root):
+        if not root:
+            return
+        self.inorderTraversal(root.left)
+        if self.prev:
+            if abs(self.prev.val - root.val) < self.diff:
+                self.diff = abs(self.prev.val - root.val)
+        self.prev = root
+        self.inorderTraversal(root.right)
+        
+        
 # Approach 2: Recursion -- bound concept according to the property of BST, 
 # like problem 98: Validate Binary Search Tree
 
