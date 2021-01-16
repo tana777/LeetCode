@@ -1,4 +1,6 @@
 """
+Number of Provinces
+
 There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. 
 For example, if A is a direct friend of B, and B is a direct friend of C, then A is an indirect friend of C. 
 And we defined a friend circle is a group of students who are direct or indirect friends.
@@ -38,33 +40,30 @@ so the 0th and 2nd students are indirect friends. All of them are in the same fr
 
 """
     Time Complexity: O(n^2) worst case: every one has only one friend, themselves. 
-    Space Complexity: O(n^2) recursion call stack
+    Space Complexity: O(n) recursion call stack
 """
 
 class Solution:
-    def findCircleNum(self, M):
-        """
-        :type M: List[List[int]]
-        :rtype: int
-        """
-        n = len(M)
-        if n==0:
-            return 0
-        ans = 0
-
-        for i in range(n):
-            if M[i][i] == 1:
-                ans += 1
-                self.dfs(M, i, n)
-        return ans 
-
-    def dfs(self, M, curr, n):
-        for i in range(n):
-            if M[curr][i] == 1:
-                M[curr][i] = M[i][curr] = 0
-                self.dfs(M, i, n)
-
-
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        numOfProvinces = 0
+        if len(isConnected) == 0:
+            return numOfProvinces
+        visited = set()
+        for start in range(len(isConnected)):
+            if start not in visited:
+                numOfProvinces += 1
+                self.dfs(isConnected, start, visited)
+        return numOfProvinces
+        
+        
+    def dfs(self, isConnected, start, visited):
+        visited.add(start)
+        for neighbor in range(len(isConnected)):
+            if neighbor not in visited and isConnected[start][neighbor] == 1:
+                self.dfs(isConnected, neighbor, visited)
+    
+        
+        
 mySol = Solution()
 M = [[1,1,0],
     [1,1,0],
