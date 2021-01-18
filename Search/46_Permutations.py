@@ -44,7 +44,25 @@ class Solution:
                 visited.remove(i)
 
                 
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        perm = []
+        self.backtrack(nums, res, perm)
+        return res
+    
+    def backtrack(self, nums, res, perm):
+        if len(perm) == len(nums):
+            res.append(perm[:])
+            return
+         
         
+        for val in nums:
+            if val in perm:
+                continue
+            perm.append(val)
+            self.backtrack(nums, res, perm)
+            perm.pop()
         
         
         
