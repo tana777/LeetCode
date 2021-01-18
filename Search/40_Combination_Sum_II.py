@@ -70,4 +70,32 @@ class Solution:
             combinations.append(candidates[i])
             self.toFindCombinationstoTarget(results, candidates, combinations, target-candidates[i],i+1) # Each number in candidates may only be used once in the combination.
             combinations.pop()
+
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        current = []
+        startidx = 0
+        candidates.sort()
+        self.backtrack(candidates, target, current, res, startidx)
+        
+        return res
+    
+    def backtrack(self, candidates, target, current, res, startidx):
+        if sum(current) == target:
+            res.append(current[::])
+            return 
+
+            
+        for i in range(startidx, len(candidates)):
+            
+            if candidates[i] + sum(current) > target:
+                break
+            if startidx != i and candidates[i] == candidates[i-1]:
+                continue  # The solution set must not contain duplicate combinations.
+                
+
+            current.append(candidates[i])
+            self.backtrack(candidates, target, current, res, i+1) # Each number in candidates may only be used once in the combination.
+            current.pop()
         
