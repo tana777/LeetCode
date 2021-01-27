@@ -88,21 +88,16 @@ class Solution:
         sentinal = root = ListNode(0)
         while l1 and l2:
             if l1.val < l2.val:
-                root.next = ListNode(l1.val)
-                root = root.next
+                root.next = l1
                 l1 = l1.next
             else:
-                root.next = ListNode(l2.val)
-                root = root.next
+                root.next = l2
                 l2 = l2.next
-        while l1:
-            root.next = ListNode(l1.val)
             root = root.next
-            l1 = l1.next
-        while l2:
-            root.next = ListNode(l2.val)
-            root = root.next
-            l2 = l2.next
+        if l1:
+            root.next = l1
+        if l2:
+            root.next = l2
         return sentinal.next
             
         
