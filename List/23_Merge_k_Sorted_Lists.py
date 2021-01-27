@@ -55,8 +55,55 @@ class Solution:
         sentinal = root = ListNode(0)
         nodeVal.sort()
         for val in nodeVal:
-            root.next = ListNode(val)
+            root.next = ListNode(val) 
             root = root.next
         return sentinal.next
                 
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        if not lists:
+            return None
+        return self.mergeSort(lists)
+    
+    def mergeSort(self, lists):
+        if len(lists) <= 1:
+            return lists[0]
+        mid = len(lists)//2
+        left = self.mergeSort(lists[:mid])
+        right = self.mergeSort(lists[mid:])
+        return self.merge(left, right)
+        
+
+    def merge(self, l1, l2):
+        if not l1 and not l2:
+            return l1
+        if not l1 or not l2:
+            return l1 if l1 else l2
+        sentinal = root = ListNode(0)
+        while l1 and l2:
+            if l1.val < l2.val:
+                root.next = ListNode(l1.val)
+                root = root.next
+                l1 = l1.next
+            else:
+                root.next = ListNode(l2.val)
+                root = root.next
+                l2 = l2.next
+        while l1:
+            root.next = ListNode(l1.val)
+            root = root.next
+            l1 = l1.next
+        while l2:
+            root.next = ListNode(l2.val)
+            root = root.next
+            l2 = l2.next
+        return sentinal.next
+            
+        
         
