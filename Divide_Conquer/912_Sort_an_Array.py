@@ -27,7 +27,7 @@ class Solution:
             p = self.partition(nums, low, high)
             self.quickSort(nums, low, p-1)
             self.quickSort(nums, p+1, high)
-        return nums
+        return
     
     
     def partition(self, nums, low, high):
