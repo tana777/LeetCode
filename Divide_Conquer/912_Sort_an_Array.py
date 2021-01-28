@@ -224,3 +224,24 @@ class Solution:
                     nums[j], nums[j+1] = nums[j+1], nums[j]
         return nums
 
+
+            
+# Method 6 Insertion sort 
+# Time Limit Exceeded
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        if n == 1:
+            return nums
+        i = j = 0
+        while i < n:
+            if i == 0:
+                i += 1
+                j += 1
+            while j > 0 and nums[j] < nums[j-1]:
+                nums[j], nums[j-1] = nums[j-1], nums[j]
+                j -= 1
+            i += 1
+            j = i
+        return nums
+                

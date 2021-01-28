@@ -30,6 +30,8 @@ The number of nodes in the list is in the range [0, 5 * 104].
 
 
 # Approach 1: Merge sort (top donw) with recursion, so this is not constant space. It's O(logn) call stack.
+# KTA: how to find the middle point of a linked list: use slow and fast ptr
+
 
 # Definition for singly-linked list.
 # class ListNode:
